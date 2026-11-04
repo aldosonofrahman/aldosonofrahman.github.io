@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INCHIFAU - Instituto Nacional de Chinameca</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f0f6ff}
+header{background:#002A5C;color:white;text-align:center;padding:20px}
+header img{width:110px;background:white;border-radius:50%;padding:5px}
+.hero{background:#FFC107;text-align:center;padding:25px}
+.hero h2{color:#002A5C;margin:0;font-size:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto}
+.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 5px 15px #0002}
+.card img{width:100%}
+.card div{padding:12px}
+.badge{background:#002A5C;color:white;padding:4px 10px;border-radius:15px;font-size:12px;font-weight:bold}
+footer{background:#002A5C;color:white;text-align:center;padding:15px}
+</style>
+</head>
+<body>
+<header>
+<img src="logo.png">
+<h1>INSTITUTO NACIONAL DE CHINAMECA<br>ING. FELIX ANTONIO ULLOA - 12837</h1>
+</header>
+<div class="hero">
+<h2>¡4 OPCIONES PARA TU FUTURO!</h2>
+<p>Bachillerato General 2 años | Técnicos 3 años</p>
+</div>
+<div class="grid">
+<div class="card"><img src="general.jpg"><div><span class="badge">2 AÑOS</span><h3>General</h3></div></div>
+<div class="card"><img src="salud.jpg"><div><span class="badge">3 AÑOS - TÉCNICO</span><h3>Salud y Bienestar Social</h3></div></div>
+<div class="card"><img src="software.jpg"><div><span class="badge">3 AÑOS - TÉCNICO</span><h3>Desarrollo de Software</h3></div></div>
+<div class="card"><img src="gestion.jpg"><div><span class="badge">3 AÑOS - TÉCNICO</span><h3>Gestión Organizacional</h3></div></div>
+</div>
+<footer>
+WhatsApp 26650789 | Instagram @inchifau_oficial | Chinameca, San Miguel
+</footer>
+</body>
+</html>
