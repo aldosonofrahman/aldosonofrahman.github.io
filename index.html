@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>INCHIFAU - 4 Opciones</title>
 <style>
 body{margin:0;font-family:Arial;background:#f0f6ff}
@@ -10,6 +11,20 @@ header img{width:90px;background:white;border-radius:50%}
 .card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.2)}
 .card img{width:100%;display:block}
 footer{background:#002A5C;color:white;text-align:center;padding:15px}
+
+/* CHATBOT */
+#chat-btn{position:fixed;bottom:20px;right:20px;background:#002A5C;color:#FFC107;width:60px;height:60px;border-radius:50%;border:none;font-size:28px;cursor:pointer;box-shadow:0 4px 15px #0005;z-index:999}
+#chat-box{position:fixed;bottom:90px;right:20px;width:340px;max-width:90vw;height:420px;background:white;border-radius:15px;box-shadow:0 5px 25px #0004;display:none;flex-direction:column;overflow:hidden;z-index:999}
+#chat-header{background:#002A5C;color:#FFC107;padding:12px;text-align:center;font-weight:bold}
+#chat-msgs{flex:1;padding:10px;overflow-y:auto;font-size:14px}
+.msg{margin:8px 0;padding:8px 12px;border-radius:12px;max-width:80%}
+.bot{background:#e8f0ff;color:#002A5C}
+.user{background:#002A5C;color:white;margin-left:auto}
+#chat-input{display:flex;border-top:1px solid #ddd}
+#chat-input input{flex:1;border:none;padding:12px;outline:none}
+#chat-input button{background:#002A5C;color:#FFC107;border:none;padding:0 15px;cursor:pointer}
+.quick{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.quick button{background:#FFC107;color:#002A5C;border:none;border-radius:15px;padding:5px 10px;font-size:12px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -20,6 +35,45 @@ footer{background:#002A5C;color:white;text-align:center;padding:15px}
 <div class="card"><img src="software.jpg"></div>
 <div class="card"><img src="gestion.jpg"></div>
 </div>
-<footer>INCHIFAU 2026 - Chinameca</footer>
+<footer>INCHIFAU 2026 - Chinameca | WhatsApp 2665-0789</footer>
+
+<!-- CHATBOT INCHIFAU -->
+<button id="chat-btn">💬</button>
+<div id="chat-box">
+<div id="chat-header">Asistente INCHIFAU 🤖</div>
+<div id="chat-msgs">
+<div class="msg bot">¡Hola! 👋 Soy el asistente del INCHIFAU. ¿En qué te ayudo?<div class="quick">
+<button onclick="sendQ('¿Qué bachilleratos tienen?')">Carreras</button>
+<button onclick="sendQ('Requisitos')">Requisitos</button>
+<button onclick="sendQ('Duración')">Duración</button>
+<button onclick="sendQ('WhatsApp')">WhatsApp</button>
+</div></div>
+</div>
+<div id="chat-input"><input id="q" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')send()"><button onclick="send()">➤</button></div>
+</div>
+
+<script>
+const btn=document.getElementById('chat-btn'), box=document.getElementById('chat-box'), msgs=document.getElementById('chat-msgs'), input=document.getElementById('q');
+btn.onclick=()=>{box.style.display=box.style.display==='flex'?'none':'flex'};
+function add(t,c){let d=document.createElement('div');d.className='msg '+c;d.innerHTML=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+function botReply(t){
+ t=t.toLowerCase();
+ let r="";
+ if(t.includes("bachiller")||t.includes("carrera")||t.includes("opcion")) r="Tenemos 4 opciones:<br><b>1. General (2 años)</b><br><b>2. Salud (3 años)</b><br><b>3. Software (3 años)</b><br><b>4. Gestión Administrativa (3 años)</b>";
+ else if(t.includes("requisito")) r="Requisitos: <br>• Certificado 9° grado<br>• Partida nacimiento<br>• DUI responsable<br>• Notas y buena conducta";
+ else if(t.includes("duracion")||t.includes("cuanto dura")) r="General dura 2 años. Las otras 3 técnicas duran 3 años con prácticas.";
+ else if(t.includes("software")) r="<b>Desarrollo de Software:</b> Aprendes programación, bases de datos, apps web y móviles. ¡Mucho empleo!";
+ else if(t.includes("salud")) r="<b>Atención Primaria en Salud:</b> Primeros auxilios, enfermería básica, prácticas en clínicas.";
+ else if(t.includes("gestion")||t.includes("administr")) r="<b>Gestión Administrativa:</b> Contabilidad, administración, computación, emprendimiento.";
+ else if(t.includes("general")) r="<b>Bachillerato General:</b> 2 años, ideal para seguir universidad.";
+ else if(t.includes("donde")||t.includes("direccion")||t.includes("ubicado")) r="Estamos en Chinameca, San Miguel. Frente a la carretera principal. INCHIFAU";
+ else if(t.includes("whatsapp")||t.includes("contacto")||t.includes("numero")) r="Escríbenos al WhatsApp: <b>2665-0789</b> o Instagram <b>@inchifau_oficial</b><br><a href='https://wa.me/50326650789' target='_blank'>👉 Click aquí para WhatsApp</a>";
+ else if(t.includes("inscripcion")||t.includes("cuando")) r="¡Inscripciones abiertas 2026! Ven al instituto de 7am a 3pm o escribe al WhatsApp.";
+ else r="Puedo ayudarte con: <b>Carreras, Requisitos, Duración, WhatsApp, Dirección</b>. ¿Qué deseas saber?";
+ add(r,'bot');
+}
+function send(){let t=input.value.trim();if(!t)return;add(t,'user');input.value='';setTimeout(()=>botReply(t),400)}
+function sendQ(t){add(t,'user');setTimeout(()=>botReply(t),400)}
+</script>
 </body>
 </html>
